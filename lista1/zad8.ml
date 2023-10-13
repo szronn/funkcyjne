@@ -10,8 +10,11 @@ let even n =
 
 let ctrue = { cbool = fun a b -> a }
 let cfalse = { cbool = fun a b -> b }
-let cand f g = { cbool = fun a b -> if f.cbool true false then g.cbool a b else b }
-let cor f g = { cbool = fun a b -> if f.cbool false true then g.cbool a b else a }
+
+let cand f g = { cbool = f.cbool g.cbool f.cbool }
+(*let cand f g = { cbool = fun a b -> if f.cbool true false then g.cbool a b else b } *)
+let cor f g = { cbool =  f.cbool f.cbool g.cbool}
+(* let cor f g = { cbool = fun a b -> if f.cbool false true then g.cbool a b else a } *)
 let cbool_of_bool p = if p then ctrue else cfalse
 let bool_of_cbool f = f.cbool true false
 
