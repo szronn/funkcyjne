@@ -3,10 +3,10 @@
 let ctrue (a: 'a) (b: 'a) = a
 let cfalse (a: 'a) (b: 'a) = b
 
-let cand f g = f g f 
-(*let cand f g = fun a b -> if f a b = a then g a b else b*)
-let cor f g = f f g
-(*let cor f g = fun a b -> if f a b = b then g a b else a*)
+(* let cand f g = f g f  *)
+let cand f g = fun a b -> if f a b = a then g a b else b
+(* let cor f g = f f g *)
+let cor f g = fun a b -> if f a b = b then g a b else a
 let cbool_of_bool p = if p then ctrue else cfalse
 let bool_of_cbool f = f true false
 
